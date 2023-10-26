@@ -11,14 +11,14 @@ export default function ImgBody () {
             </div>
             <div className="flex flex-row p-4 justify-center items-center">
                 <div className="m-2">
-                    <Image src={img1} alt="img1" width={200} />
+                    <Image src={img1} alt="img1" width={200} className="rounded-lg" />
                 </div>
                 <div className="flex flex-col">
                     <div className="m-2">
-                        <Image src={img2} alt="img2" width={100} />
+                        <Image src={img2} alt="img2" width={100} className="rounded-lg" />
                     </div>
                     <div className="m-2">
-                        <Image src={img3} alt="img3" width={100} />
+                        <Image src={img3} alt="img3" width={100} className="rounded-lg" />
                     </div>
                 </div>
             </div>
