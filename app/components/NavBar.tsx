@@ -78,7 +78,7 @@ export default function NavBar () {
                   <li>
                     <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500'>
                         <div className='m-2'><AiOutlineQuestion size={20} /></div>
-                        <h1>FQAS</h1>
+                        <h1>FAQS</h1>
                     </div>
                   </li>
                 </ul>
