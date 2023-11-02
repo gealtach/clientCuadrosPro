@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image';
 import { BiMenu, BiSolidPhotoAlbum } from 'react-icons/bi';
 import { BsChatLeftDots, BsFillArrowThroughHeartFill } from 'react-icons/bs';
@@ -29,16 +30,17 @@ export default function NavBar () {
             </div>
 
             {isMenuOpen && (
-            <div className="absolute top-0 left-0 h-full w-3/4 z-50 bg-white p-4 rounded shadow">
+            <div className="absolute top-0 left-0 h-full w-3/4 z-50 bg-white p-4 rounded shadow md:w-1/3">
                 <div className='flex flex-row justify-around items-center mb-4 border-b'>
                     <Image src={logo} alt='CuadroPro' width={200} height={100} />
                     <div className='cursor-pointer m-4 rounded-lg hover:bg-blue-500' onClick={toggleMenu}>
                         <AiFillCloseCircle size={30} />
                     </div>
                 </div>
-                <div className='p-2 border-b'>
+                <div className='p-2 border-b' onClick={toggleMenu}>
                     <h1 className='text-sm'>Registrate para dar seguimiento a tus ordenes y mucho más</h1>
-                    <button className='bg-blue-500 p-2 m-2 rounded-lg text-white font-bold hover:bg-pink-600'>
+                    <button onClick={() => {
+                      router.push('/login')}} className='bg-blue-500 p-2 m-2 rounded-lg text-white font-bold hover:bg-pink-600'>
                         Ingresa o Registrate
                     </button>
                 </div>
