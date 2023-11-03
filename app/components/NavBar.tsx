@@ -7,15 +7,16 @@ import { FaGift, FaPercent } from 'react-icons/fa';
 import { GrHistory } from 'react-icons/gr';
 import logo from '../img/logo300x200.svg';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function NavBar () {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const router = useRouter();
     
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
       };
+
+    const { data: session } = useSession();
 
     return(
         <nav className='flex flex-row justify-between border-b border-blue-500'>
@@ -37,13 +38,22 @@ export default function NavBar () {
                         <AiFillCloseCircle size={30} />
                     </div>
                 </div>
-                <div className='p-2 border-b' onClick={toggleMenu}>
+                {session?.user ? (
+                  <div>
+                    <div className='flex gap-x-2'>
+                      <p>Hola</p>
+                      <h1 className='font-bold'>{session.user.name}</h1>
+                    </div>
+                    <div className='bg-blue-500 p-2 m-2 w-fit cursor-pointer rounded-lg text-white font-bold hover:bg-pink-600' onClick={() => signOut()}>Salir</div>
+                  </div>
+                  ):(
+                  <div className='p-2 border-b' onClick={toggleMenu}>
                     <h1 className='text-sm'>Registrate para dar seguimiento a tus ordenes y mucho más</h1>
-                    <button onClick={() => {
-                      router.push('/login')}} className='bg-blue-500 p-2 m-2 rounded-lg text-white font-bold hover:bg-pink-600'>
+                    <button onClick={() => {signIn()}} className='bg-blue-500 p-2 m-2 rounded-lg text-white font-bold hover:bg-pink-600'>
                         Ingresa o Registrate
                     </button>
-                </div>
+                  </div>)
+                  }
                 <ul className='border-b'>
                   <li>
                     <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500'>
