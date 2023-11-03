@@ -8,9 +8,11 @@ import { GrHistory } from 'react-icons/gr';
 import logo from '../img/logo300x200.svg';
 import { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function NavBar () {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const router = useRouter();
     
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -81,8 +83,8 @@ export default function NavBar () {
                         <h1>Código Promocional</h1>
                     </div>
                   </li>
-                  <li>
-                    <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500'>
+                  <li onClick={toggleMenu}>
+                    <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500' onClick={() => router.push('/dashboard')}>
                         <div className='m-2'><GrHistory size={20} /></div>
                         <h1>Mis Ordenes</h1>
                     </div>
