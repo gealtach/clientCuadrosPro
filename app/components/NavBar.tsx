@@ -41,12 +41,18 @@ export default function NavBar () {
                     </div>
                 </div>
                 {session?.user ? (
-                  <div>
+                  <div className='flex flex-col items-center'>
                     <div className='flex gap-x-2'>
+                    <img src={session.user.image} alt={session.user.name} className='w-10 rounded-lg' /> 
+                    <div className='flex flex-col gap-x-2'>
                       <p>Hola</p>
                       <h1 className='font-bold'>{session.user.name}</h1>
                     </div>
-                    <div className='bg-blue-500 p-2 m-2 w-fit cursor-pointer rounded-lg text-white font-bold hover:bg-pink-600' onClick={() => signOut()}>Salir</div>
+                    </div>
+                    <div className='bg-blue-500 p-2 my-4 w-fit cursor-pointer rounded-lg text-white font-bold hover:bg-pink-600' 
+                        onClick={() => signOut({callbackUrl: '/'})}> 
+                        Salir
+                      </div>
                   </div>
                   ):(
                   <div className='p-2 border-b' onClick={toggleMenu}>
