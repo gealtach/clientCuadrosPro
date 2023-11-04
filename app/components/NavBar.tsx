@@ -43,7 +43,7 @@ export default function NavBar () {
                 {session?.user ? (
                   <div className='flex flex-col items-center'>
                     <div className='flex gap-x-2'>
-                    <img src={session.user.image} alt={session.user.name} className='w-10 rounded-lg' /> 
+                    <img src={session.user.image || undefined} alt={session.user.name || undefined} className='w-10 rounded-lg' /> 
                     <div className='flex flex-col gap-x-2'>
                       <p>Hola</p>
                       <h1 className='font-bold'>{session.user.name}</h1>
@@ -63,14 +63,14 @@ export default function NavBar () {
                   </div>)
                   }
                 <ul className='border-b'>
-                  <li>
-                    <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500'>
+                  <li onClick={toggleMenu}>
+                    <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500' onClick={() => router.push('/photos')}>
                         <div className='m-2'><BiSolidPhotoAlbum size={20} /></div>
                         <h1>Enmarca tus fotos</h1>
                     </div>
                   </li>
                   <li>
-                    <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500'>
+                    <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500' onClick={() => router.push('/collection')}>
                         <div className='m-2'><BsFillArrowThroughHeartFill size={20} /></div>
                         <h1>Mira nuestra colección de arte</h1>
                     </div>
@@ -102,6 +102,11 @@ export default function NavBar () {
                     </div>
                   </li>
                 </ul>
+                <div onClick={toggleMenu}>
+                  <div onClick={() => router.push('/')} className='bg-blue-500 p-2 m-2 rounded-lg text-white font-bold flex justify-center cursor-pointer hover:bg-pink-600'>
+                    Inicio
+                  </div>
+                </div>
             </div>
             )}
         </nav>
