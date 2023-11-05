@@ -5,14 +5,42 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { BsCartCheck } from 'react-icons/bs';
+import { useSession } from 'next-auth/react';
 
 function Selected() {
   const router = useRouter();
   const { dispatch } = useFileContext();
+  const { data: session } = useSession();
+  const email = session.user.email;
 
   const handleBuy = () => {
     dispatch({ type: 'BUY_CART', payload: {selectedItems, totalPrice}});
-    router.push('/payment');
+    //esta wea vuela despues
+    const data = { selectedItems, totalPrice, email };
+    fetch('/api/postpurchases', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data), // Convierte el objeto a una cadena JSON
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Error al realizar la solicitud POST');
+      })
+      .then((newPurchase) => {
+        console.log(newPurchase);
+        // Maneja la respuesta del servidor aquí si es necesario
+        // router.push('/payment');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Manejar el error de la solicitud POST
+      });
+    //hasta aqui
+    //router.push('/payment');
   }
 
   const handleRemoveFile = (position) => {

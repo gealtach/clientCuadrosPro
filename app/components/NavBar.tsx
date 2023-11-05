@@ -25,7 +25,7 @@ export default function NavBar () {
             <div className='flex items-center justify-center p-3 m-4 h-full rounded-3xl cursor-pointer hover:bg-blue-500' onClick={toggleMenu}>
                <BiMenu size={30} />
             </div>
-            <div className='mx-2'>
+            <div className='mx-2 cursor-pointer' onClick={() => router.push('/')}>
                     <Image src={logo} alt='Cuadros Pro' width={150} height={75} />
             </div>
             <div className='flex items-center justify-center p-3 m-4 h-full rounded-3xl cursor-pointer hover:bg-blue-500'>
@@ -69,26 +69,26 @@ export default function NavBar () {
                         <h1>Enmarca tus fotos</h1>
                     </div>
                   </li>
-                  <li>
+                  <li onClick={toggleMenu}>
                     <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500' onClick={() => router.push('/collection')}>
                         <div className='m-2'><BsFillArrowThroughHeartFill size={20} /></div>
                         <h1>Mira nuestra colección de arte</h1>
                     </div>
                   </li>
-                  <li>
+                  {/* <li>
                     <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500'>
                         <div className='m-2'><FaGift size={20} /></div>
                         <h1>GiftCards para regalos</h1>
                     </div>
-                  </li>
+                  </li> */}
                 </ul>
                 <ul className='border-b'>
-                  <li>
+                  {/* <li>
                     <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500'>
                         <div className='m-2'><FaPercent size={20} /></div>
                         <h1>Código Promocional</h1>
                     </div>
-                  </li>
+                  </li> */}
                   <li onClick={toggleMenu}>
                     <div className='flex flex-row items-center cursor-pointer my-2 rounded-md hover:bg-blue-500' onClick={() => router.push('/dashboard')}>
                         <div className='m-2'><GrHistory size={20} /></div>
