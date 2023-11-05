@@ -1,10 +1,16 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 function Page() {
   const { data: session } = useSession();
   const [purchases, setPurchases] = useState<any>([]);
+  const router = useRouter();
+
+  const handleClick = (id : string) => {
+    router.push(`/dashboard/${id}`)    
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -21,7 +27,7 @@ function Page() {
   return (
     <div>
       {purchases &&  purchases.map((purchase: any, index:number) => (
-        <div className='bg-slate-100 my-2 p-2' key={index}>
+        <div className='bg-slate-100 my-2 p-2 text-sm cursor-pointer' key={index} onClick={() =>handleClick(purchase.id)}>
           <p>Id Compra: {purchase.id}</p>
           <p>Fecha de compra: {purchase.createdAt}</p>
           <p>Comprador: {purchase.buyer}</p>
