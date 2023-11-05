@@ -25,9 +25,9 @@ function Page() {
   }, [session]);
 
   return (
-    <div>
+    <div className='md:flex md:flex-wrap'>
       {purchases &&  purchases.map((purchase: any, index:number) => (
-        <div className='bg-slate-100 my-2 p-2 text-sm cursor-pointer' key={index} onClick={() =>handleClick(purchase.id)}>
+        <div className='bg-slate-100 rounded-lg border m-2 p-2 text-sm cursor-pointer' key={index} onClick={() =>handleClick(purchase.id)}>
           <p>Id Compra: {purchase.id}</p>
           <p>Fecha de compra: {purchase.createdAt}</p>
           <p>Comprador: {purchase.buyer}</p>

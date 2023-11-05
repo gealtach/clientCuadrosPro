@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <main className='pb-20 mx-4 bg-slate-100 p-2 rounded-lg'>
+    <main className='pb-20 md:pb-32 mx-4 bg-slate-100 p-2 rounded-lg'>
         <div>
             <ul>
                 <li className='cursor-pointer text-sm my-2 w-fit p-1 rounded-md hover:bg-blue-500'><a href="mailto:cuadrospro.ventas@gmail.com" target='_blank'>Contáctanos</a></li>

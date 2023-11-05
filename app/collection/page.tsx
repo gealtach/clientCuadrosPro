@@ -21,7 +21,7 @@ function page() {
   return (
     <div>
         <h1 className="text-2xl font-bold m-4">Galeria</h1>
-        <div className='flex flex-col gap-y-4 bg-slate-100 items-center py-4'>
+        <div className='flex flex-col gap-y-4 bg-slate-100 items-center py-4 md:flex-row md:flex-wrap md:gap-x-4 md:justify-center'>
             <div>
                 <Image className='border-2 border-pink-600 rounded-lg' src={photo1} alt='photo1' width={250} height={250} />
             </div>
