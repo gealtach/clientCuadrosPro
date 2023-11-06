@@ -87,7 +87,7 @@ function Selected() {
   return (
     <div className='flex flex-col items-center'>
       <h1 className='text-2xl font-bold my-4'>Archivos seleccionados:</h1>
-      <ul className='flex flex-col items-center'>
+      <ul className='flex flex-col items-center md:flex-row md:flex-wrap md:gap-x-10 md:mx-4'>
         {selectedItems.map((item, index) => (
           <li className='bg-pink-600 my-4 p-2 rounded-lg' key={index}>
             <div className='bg-black p-2 m-2 w-fit relative'>
@@ -150,6 +150,8 @@ function Selected() {
             <h1 className='text-lg'>Total:</h1>
             <h1 className='text-lg font-bold'>{totalPrice} CLP</h1>
       </div>
+      <label htmlFor="direccion" className='m-2'>Agrega tu dirección para el envío</label>
+      <input className='border rounded-lg h-10' type="text" name="direccion" id="direccion" />
       <button onClick={handleBuy} className='flex bg-blue-500 p-2 gap-x-2 rounded-lg m-2 hover:bg-pink-600 hover:text-white'><BsCartCheck size={20} /> Comprar</button>
     </div>
   );

@@ -67,7 +67,7 @@ function page() {
                             <Image className='rounded-xl' src={tiles} alt='Tiles' width={200} height={150} />
                             <h1 className='font-semibold'>Mosaico</h1>
                         </div>
-                        <div className='flex gap-x-4 justify-center'>
+                        {/* <div className='flex gap-x-4 justify-center'>
                             <div className='flex flex-col items-center cursor-pointer bg-slate-200 p-4 rounded-lg'>
                                 <Image className='rounded-xl' src={collage} alt='collage' width={150} height={150} />
                                 <h1 className='font-semibold'>Collage</h1>
@@ -76,7 +76,7 @@ function page() {
                                 <Image className='rounded-xl' src={justOne} alt='justOne' width={150} height={150} />
                                 <h1 className='font-semibold'>Un cuadro</h1>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@ function page() {
             mosaico && (
                 <div className='absolute bottom-10 left-10 right-10 z-50 bg-blue-500 rounded-xl p-4'>
                     <div className='flex justify-between'>
-                        <div className='flex gap-x-3 cursor-pointer' onClick={handleFileInputChange}>
+                        <div className='flex gap-x-3 cursor-pointer md:w-full md:justify-center' onClick={handleFileInputChange}>
                             <IoMdPhotos size={25} />
                             <h1 className='text-sm font-bold'>Importar desde mis archivos</h1>
                             <input

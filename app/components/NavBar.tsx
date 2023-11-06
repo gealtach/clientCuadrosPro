@@ -28,9 +28,9 @@ export default function NavBar () {
             <div className='mx-2 cursor-pointer' onClick={() => router.push('/')}>
                     <Image src={logo} alt='Cuadros Pro' width={150} height={75} />
             </div>
-            <div className='flex items-center justify-center p-3 m-4 h-full rounded-3xl cursor-pointer hover:bg-blue-500'>
+            <a className='flex items-center justify-center p-3 m-4 h-full rounded-3xl cursor-pointer hover:bg-blue-500' href="mailto:cuadrospro.ventas@gmail.com" target='_blank'>
                 <BsChatLeftDots size={30} />
-            </div>
+            </a>
 
             {isMenuOpen && (
             <div className="absolute top-0 left-0 h-full w-3/4 z-50 bg-white p-4 rounded shadow md:w-1/3">
