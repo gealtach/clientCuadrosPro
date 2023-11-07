@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { BiMenu, BiSolidPhotoAlbum } from 'react-icons/bi';
 import { BsChatLeftDots, BsFillArrowThroughHeartFill } from 'react-icons/bs';
 import { AiFillCloseCircle, AiOutlineQuestion } from 'react-icons/ai';
-import { FaGift, FaPercent } from 'react-icons/fa';
+import { FaCpanel, FaGift, FaPercent } from 'react-icons/fa';
 import { GrHistory } from 'react-icons/gr';
 import logo from '../img/logo300x200.svg';
 import { useState } from 'react';
@@ -28,9 +28,17 @@ export default function NavBar () {
             <div className='mx-2 cursor-pointer' onClick={() => router.push('/')}>
                     <Image src={logo} alt='Cuadros Pro' width={150} height={75} />
             </div>
-            <a className='flex items-center justify-center p-3 m-4 h-full rounded-3xl cursor-pointer hover:bg-blue-500' href="mailto:cuadrospro.ventas@gmail.com" target='_blank'>
-                <BsChatLeftDots size={30} />
-            </a>
+            {
+              session?.user?.email === 'cleivaj93@gmail.com' ? (
+                <div className='m-4 bg-blue-500 hover:bg-pink-600 px-2 rounded-lg cursor-pointer' onClick={() => router.push('/admindashboard')}>
+                  <FaCpanel size={50} />
+                </div>
+              ):(
+                <a className='flex items-center justify-center p-3 m-4 h-full rounded-3xl cursor-pointer hover:bg-blue-500' href="mailto:cuadrospro.ventas@gmail.com" target='_blank'>
+                  <BsChatLeftDots size={30} />
+                </a>
+              )
+            }
 
             {isMenuOpen && (
             <div className="absolute top-0 left-0 h-full w-3/4 z-50 bg-white p-4 rounded shadow md:w-1/3">

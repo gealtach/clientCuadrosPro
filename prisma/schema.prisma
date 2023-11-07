@@ -18,6 +18,8 @@ model Purchase {
   boxes      Box[]
   buyer      String
   totalPrice Int
+  adress     String
+  done       Boolean 
 }
 model Box {
   id         String    @id @default(cuid())

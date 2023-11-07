@@ -6,6 +6,14 @@ export async function getPurchasesByEmail(email:string) {
   });
 }
 
+export async function getAllPurchases() {
+  return prisma.purchase.findMany({
+    include: {
+      boxes: true,
+    }
+  })
+}
+
 
 export async function postPurchases({
   selectedItems,

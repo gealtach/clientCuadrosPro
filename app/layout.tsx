@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'CuadrosPro',
   description: 'El arte de tus recuerdos',
   icons: {
-    icon: './favicon.ico'
+    icon: './favicon.png'
   }
 }
 
