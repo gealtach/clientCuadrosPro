@@ -30,7 +30,6 @@ function page() {
       const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = e.target.files;
         dispatch({ type: 'SET_SELECTED_FILES', payload: selectedFiles });
-        // Aquí puedes manejar los archivos seleccionados, como subirlos o procesarlos.
         router.push('/selected');
       };
 
@@ -46,11 +45,11 @@ function page() {
                 <h1 className='text-sm text-slate-400'>Estoy decorando mis muros</h1>
             </div>
         </div>
-        <div className='flex gap-x-4 my-4 bg-slate-100 p-4 rounded-lg cursor-pointer'>
+        <div className='flex gap-x-4 my-4 bg-slate-100 p-4 rounded-lg cursor-pointer' onClick={() => router.push('/codemaker')}>
             <Image src={gift} alt='toGift' width={75} height={75} />
             <div>
                 <h1 className='text-xl font-bold text-pink-600'>Para regalar</h1>
-                <h1 className='text-sm text-slate-400'>Quiero un regalo especial</h1>
+                <h1 className='text-sm text-slate-400'>Una GiftCard para las buenas ideas</h1>
             </div>
         </div>
         {toMySelfMenu && (
@@ -67,16 +66,6 @@ function page() {
                             <Image className='rounded-xl' src={tiles} alt='Tiles' width={200} height={150} />
                             <h1 className='font-semibold'>Mosaico</h1>
                         </div>
-                        {/* <div className='flex gap-x-4 justify-center'>
-                            <div className='flex flex-col items-center cursor-pointer bg-slate-200 p-4 rounded-lg'>
-                                <Image className='rounded-xl' src={collage} alt='collage' width={150} height={150} />
-                                <h1 className='font-semibold'>Collage</h1>
-                            </div>
-                            <div className='flex flex-col items-center cursor-pointer bg-slate-200 p-4 rounded-lg'>
-                                <Image className='rounded-xl' src={justOne} alt='justOne' width={150} height={150} />
-                                <h1 className='font-semibold'>Un cuadro</h1>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>
