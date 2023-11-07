@@ -12,11 +12,16 @@ function Selected() {
   const { dispatch } = useFileContext();
   const { data: session } = useSession();
   const email = session.user.email;
+  const [adress, setAdress] = useState('');
+
+  const handleChange = (e) => {
+    setAdress(e.target.value)
+  }
 
   const handleBuy = () => {
     dispatch({ type: 'BUY_CART', payload: {selectedItems, totalPrice}});
     //esta wea vuela despues
-    const data = { selectedItems, totalPrice, email };
+    const data = { selectedItems, totalPrice, email, adress };
     fetch('/api/postpurchases', {
       method: 'POST',
       headers: {
@@ -151,8 +156,11 @@ function Selected() {
             <h1 className='text-lg font-bold'>{totalPrice} CLP</h1>
       </div>
       <label htmlFor="direccion" className='m-2'>Agrega tu dirección para el envío</label>
-      <input className='border rounded-lg h-10' type="text" name="direccion" id="direccion" />
-      <button onClick={handleBuy} className='flex bg-blue-500 p-2 gap-x-2 rounded-lg m-2 hover:bg-pink-600 hover:text-white'><BsCartCheck size={20} /> Comprar</button>
+      <input className='border rounded-lg h-10' type="text" name="direccion" value={adress} onChange={handleChange} placeholder='Calle Numero, Comuna' />
+      <button onClick={handleBuy} disabled={adress.length < 5 ? true : false} className='flex bg-blue-500 p-2 gap-x-2 rounded-lg m-2 hover:bg-pink-600 hover:text-white'>
+        <BsCartCheck size={20} />
+        Comprar
+      </button>
     </div>
   );
 }

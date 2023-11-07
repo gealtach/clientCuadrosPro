@@ -12,13 +12,23 @@ export async function getAllPurchases() {
       boxes: true,
     }
   })
+};
+
+export async function putDone(setdone:string) {
+  return prisma.purchase.update({
+    where: { id: setdone},
+    data: {
+      done: true
+    }
+  })
 }
 
 
 export async function postPurchases({
   selectedItems,
   totalPrice,
-  email
+  email,
+  adress
 }: {
   selectedItems: {
     url: never;
@@ -27,13 +37,16 @@ export async function postPurchases({
   }[];
   totalPrice: number; // Asegúrate de usar el tipo correcto aquí
   email: string;
+  adress: string;
 }) {
   try {
     const newPurchase = await prisma.purchase.create({
       data: {
         boxes: { create: selectedItems },
         totalPrice: totalPrice,
-        buyer: email
+        buyer: email,
+        adress,
+        done: false
       }
     });
     return newPurchase
