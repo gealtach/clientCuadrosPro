@@ -27,7 +27,7 @@ function Selected() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data), // Convierte el objeto a una cadena JSON
+      body: JSON.stringify(data), 
     })
       .then((response) => {
         if (response.ok) {
@@ -36,13 +36,9 @@ function Selected() {
         throw new Error('Error al realizar la solicitud POST');
       })
       .then((newPurchase) => {
-        console.log(newPurchase);
-        // Maneja la respuesta del servidor aquí si es necesario
-        // router.push('/payment');
       })
       .catch((error) => {
         console.error('Error:', error);
-        // Manejar el error de la solicitud POST
       });
     //hasta aqui
     //router.push('/payment');
@@ -67,7 +63,6 @@ function Selected() {
       }
       setImageUrls(urls);
       setSelectedSizes(new Array(selectedFiles.length).fill('10x10'));
-      console.log(selectedItems)
     }
   }, [selectedFiles]);
 

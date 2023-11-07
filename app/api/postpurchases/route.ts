@@ -5,7 +5,6 @@ export async function POST(req: any) {
   try {
     const data = await req.json();
     const newPurchase = await postPurchases(data);
-    console.log(newPurchase);
     return NextResponse.json(newPurchase);
   } catch (error) {
     console.error('Error:', error);
