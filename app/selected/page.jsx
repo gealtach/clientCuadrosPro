@@ -11,7 +11,7 @@ function Selected() {
   const router = useRouter();
   const { dispatch } = useFileContext();
   const { data: session } = useSession();
-  const email = session.user.email;
+  const email = session?.user.email;
   const [adress, setAdress] = useState('');
 
   const handleChange = (e) => {
@@ -64,6 +64,7 @@ function Selected() {
       setImageUrls(urls);
       setSelectedSizes(new Array(selectedFiles.length).fill('10x10'));
     }
+    else router.push('/');
   }, [selectedFiles]);
 
   const calculatePrice = (size) => {
