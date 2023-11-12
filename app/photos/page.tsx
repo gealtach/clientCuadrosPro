@@ -21,17 +21,28 @@ function page() {
         setMosaico(!mosaico);
         selfMenu();
     };
+
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const handleFileInputChange = () => {
         if (fileInputRef.current) {
           fileInputRef.current.click();
         }
-      };
-      const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedFiles = e.target.files;
-        dispatch({ type: 'SET_SELECTED_FILES', payload: selectedFiles });
-        router.push('/selected');
-      };
+    };
+    const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+       //const selectedFiles = e.target.files;
+       const files = e.target.files;
+       if(files){
+           const newFormData = new FormData();
+           
+           for (let i = 0; i < files.length; i++) {
+               const file = files[i];
+               newFormData.append('files', file); // 'files' es el nombre que puedes usar en tu servidor para identificar los archivos
+            }
+            dispatch({ type: 'SET_SELECTED_FILES', payload: files });
+            dispatch({ type: 'SET_DATAFORM', payload: newFormData });
+        }
+       router.push('/selected');
+    };
 
     
 

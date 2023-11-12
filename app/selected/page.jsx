@@ -13,6 +13,10 @@ function Selected() {
   const { data: session } = useSession();
   const email = session?.user.email;
   const [adress, setAdress] = useState('');
+  const { state } = useFileContext();
+  const selectedFiles = state.selectedFiles;
+  const [imageUrls, setImageUrls] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
 
   const handleChange = (e) => {
     setAdress(e.target.value)
@@ -47,12 +51,6 @@ function Selected() {
   const handleRemoveFile = (position) => {
     dispatch({ type: 'REMOVE_FILE', payload: position });
   };
-
-  const { state } = useFileContext();
-  const selectedFiles = state.selectedFiles;
-
-  const [imageUrls, setImageUrls] = useState([]);
-  const [selectedSizes, setSelectedSizes] = useState([]);
 
   useEffect(() => {
     if (selectedFiles) {
