@@ -71,7 +71,7 @@ function page() {
                   {purchase.boxes && purchase.boxes.map((box:any, index:number) =>(
                     <li className='bg-pink-600 m-2 p-2 rounded-md border border-black'>
                       <p>Id: {box.id}</p>
-                      <p>Imagen: {box.url}</p>
+                      <a href={box.url} target='_blank'>Imagen:{box.url}</a>
                       <p>Dimensiones: {box.selectedSize}</p>
                       <p>Precio: {box.price}</p>
                     </li>
