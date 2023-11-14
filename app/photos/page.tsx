@@ -16,6 +16,7 @@ function page() {
     const [mosaico, setMosaico] = useState(false);
     const { dispatch } = useFileContext();
     const selfMenu = () => setToMySelfMenu(!toMySelfMenu);
+    
     const router = useRouter();
     const mosaicoMenu = () => {
         setMosaico(!mosaico);
@@ -37,7 +38,7 @@ function page() {
                 formData.append('file', file, file.name);
                 try {
                     const response = await fetch(
-                        "https://api.cloudinary.com/v1_1/dwj6wtgtb/image/upload?upload_preset=oxxsnr7q",
+                        `https://api.cloudinary.com/v1_1/${process.env.cloudName}/image/upload?upload_preset=${process.env.cloudPreset}`,
                         {
                           method: "POST",
                           body: formData,

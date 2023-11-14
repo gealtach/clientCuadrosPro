@@ -19,30 +19,8 @@ function Selected() {
   }
 
   const handleBuy = () => {
-    dispatch({ type: 'BUY_CART', payload: {selectedItems, totalPrice}});
-    console.log(selectedItems);
-    //esta wea vuela despues
-    const data = { selectedItems, totalPrice, email, adress };
-    fetch('/api/postpurchases', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data), 
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Error al realizar la solicitud POST');
-      })
-      .then((newPurchase) => {
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-    //hasta aqui
-    //router.push('/payment');
+    dispatch({ type: 'BUY_CART', payload: {selectedItems, totalPrice, email, adress}});
+    router.push('/payment');
   }
 
   const handleRemoveFile = (position) => {
