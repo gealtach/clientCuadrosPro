@@ -27,11 +27,41 @@ function page() {
           fileInputRef.current.click();
         }
       };
-      const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const handleFilesSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = e.target.files;
-        dispatch({ type: 'SET_SELECTED_FILES', payload: selectedFiles });
-        router.push('/selected');
+        const imgArray = [];
+        if (selectedFiles) {
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const formData = new FormData();
+                const file = selectedFiles[i];
+                formData.append('file', file, file.name);
+                try {
+                    const response = await fetch(
+                        "https://api.cloudinary.com/v1_1/dwj6wtgtb/image/upload?upload_preset=oxxsnr7q",
+                        {
+                          method: "POST",
+                          body: formData,
+                        }
+                    );
+                    if (response.ok) {
+                        const data = await response.json();
+                        imgArray.push(data.secure_url);
+                    } else {
+                        console.error("Error en la solicitud:", response.status, response.statusText);
+                    }
+                } catch (error) {
+                    console.error("Error al procesar la solicitud:", error);
+                }
+            }            
+            dispatch({ type: 'SET_SELECTED_FILES', payload: imgArray });
+            router.push('/selected')
+        }
+        else{
+            router.push('/');
+        }
       };
+      
+      
 
     
 
@@ -80,8 +110,8 @@ function page() {
                             <input
                               type="file"
                               ref={fileInputRef}
+                              multiple
                               style={{ display: 'none' }}
-                              multiple // Para permitir la selección de múltiples archivos
                               onChange={handleFilesSelected}
                             />
                         </div>

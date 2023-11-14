@@ -20,6 +20,7 @@ function Selected() {
 
   const handleBuy = () => {
     dispatch({ type: 'BUY_CART', payload: {selectedItems, totalPrice}});
+    console.log(selectedItems);
     //esta wea vuela despues
     const data = { selectedItems, totalPrice, email, adress };
     fetch('/api/postpurchases', {
@@ -50,21 +51,13 @@ function Selected() {
 
   const { state } = useFileContext();
   const selectedFiles = state.selectedFiles;
-
-  const [imageUrls, setImageUrls] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
 
   useEffect(() => {
     if (selectedFiles) {
-      const urls = [];
-      for (let i = 0; i < selectedFiles.length; i++) {
-        const imageUrl = URL.createObjectURL(selectedFiles[i]);
-        urls.push(imageUrl);
-      }
-      setImageUrls(urls);
-      setSelectedSizes(new Array(selectedFiles.length).fill('10x10'));
-    }
+     }
     else router.push('/');
+
   }, [selectedFiles]);
 
   const calculatePrice = (size) => {
@@ -78,18 +71,23 @@ function Selected() {
     return prices[size];
   };
 
-  const selectedItems = imageUrls.map((imageUrl, index) => ({
+  const selectedItems = selectedFiles?.map((imageUrl, index) => ({
     url: imageUrl,
-    selectedSize: selectedSizes[index],
-    price: calculatePrice(selectedSizes[index]),
+    selectedSize: selectedSizes[index] || '10x10',
+    price: calculatePrice(selectedSizes[index]) || 10,
   }));
-  const totalPrice = selectedItems.reduce((total, item) => total + item.price, 0);
+  const totalPrice = selectedItems
+    .map((item, index) => (selectedSizes[index] ? selectedSizes[index] : '10x10'))
+    .reduce((total, currentSize) => {
+      const sizePrice = currentSize === '10x10' ? 10 : currentSize === '15x15' ? 15 : currentSize === '20x20' ? 20 : currentSize === '20x30' ? 25 : currentSize === '40x40' ? 40 : 0;
+      return total + sizePrice;
+    }, 0);
 
   return (
     <div className='flex flex-col items-center'>
       <h1 className='text-2xl font-bold my-4'>Archivos seleccionados:</h1>
       <ul className='flex flex-col items-center md:flex-row md:flex-wrap md:gap-x-10 md:mx-4'>
-        {selectedItems.map((item, index) => (
+        {selectedItems?.map((item, index) => (
           <li className='bg-pink-600 my-4 p-2 rounded-lg' key={index}>
             <div className='bg-black p-2 m-2 w-fit relative'>
               <button
@@ -132,7 +130,7 @@ function Selected() {
                 </select>
               </div>
             </div>
-            <h1>Precio: {item.price}</h1>
+            <h1>Precio: {item.price || 10}</h1>
           </li>
         ))}
         {selectedFiles?.length === 0 && (
@@ -153,7 +151,7 @@ function Selected() {
       </div>
       <label htmlFor="direccion" className='m-2'>Agrega tu dirección para el envío</label>
       <input className='border rounded-lg h-10' type="text" name="direccion" value={adress} onChange={handleChange} placeholder='Calle Numero, Comuna' />
-      <button onClick={handleBuy} disabled={adress.length < 5 ? true : false} className='flex bg-blue-500 p-2 gap-x-2 rounded-lg m-2 hover:bg-pink-600 hover:text-white'>
+      <button onClick={handleBuy} disabled={adress.length < 5 ? true : false} className='flex disabled:opacity-70 bg-blue-500 p-2 gap-x-2 rounded-lg m-2 hover:bg-pink-600 hover:text-white'>
         <BsCartCheck size={20} />
         Comprar
       </button>
