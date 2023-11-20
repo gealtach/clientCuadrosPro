@@ -11,20 +11,6 @@ function payment() {
   const cart = state.buyCart;
   const router = useRouter();
 
-  const handleWebPay = async () => {
-    try {
-      const response = await fetch(
-        "/api/webpay",
-        {
-          method: "POST",
-          body: cart,
-        }
-    )} catch (error) {
-      console.log(error);
-      
-    }
-  }
-
   const somefunction = () => {
     // const data = { selectedItems, totalPrice, email, adress };
     // fetch('/api/postpurchases', {
@@ -46,6 +32,9 @@ function payment() {
     //     console.error('Error:', error);
     //   });
   }
+  const handlermp = async () => {
+    
+  }
   useEffect(()=>{
     if(!cart) router.push('/');
       console.log(cart,'im the cart');
@@ -62,7 +51,7 @@ function payment() {
         <div className='border p-2 bg-slate-100 rounded-lg cursor-pointer hover:bg-blue-500'>
           <Image src={webpayLogo} alt='webpay' width={250} height={200} />
         </div>
-        <div className='border p-2 bg-slate-100 rounded-lg cursor-pointer hover:bg-blue-500'>
+        <div className='border p-2 bg-slate-100 rounded-lg cursor-pointer hover:bg-blue-500' onClick={handlermp}>
           <Image src={mercadoPagoLogo} alt='mercadoPago' width={250} height={200} />
         </div>
       </div>
