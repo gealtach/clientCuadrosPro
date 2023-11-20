@@ -6,8 +6,8 @@ const nextConfig = {
       env:{
         cloudName: 'dwj6wtgtb',
         cloudPreset: 'oxxsnr7q',
-        apiKeyWebPay: '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C',
-        webpayComecioKey: '597055555532',
+        acmp: 'TEST-7912064436267766-111617-dd73109e369a818f7c61391e1bca88a6-1551195321',
+        pkmp: 'TEST-699c2148-a737-45ac-b65b-af3c34bc4e05'
       }
 }
 

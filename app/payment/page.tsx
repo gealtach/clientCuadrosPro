@@ -33,13 +33,24 @@ function payment() {
     //   });
   }
   const handlermp = async () => {
-    
+    try {
+      const response = await fetch('/api/createpreference', {
+          method: "POST",
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(cart),
+      });
+      console.log(response);
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
   }
   useEffect(()=>{
     if(!cart) router.push('/');
-      console.log(cart,'im the cart');
+      //console.log(cart,'im the cart');
   },[])
-  console.log(cart)
+  //console.log(cart)
   return (
     <div>
       <div className='m-4 p-4 flex gap-x-10'>
