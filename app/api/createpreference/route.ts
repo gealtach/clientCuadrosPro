@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
             method: "POST",
             headers: {
               'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+              'Access-Control-Allow-Methods': 'POST',
               'Access-Control-Allow-Headers': 'Content-Type, Authorization',
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${process.env.acmp}`
@@ -30,7 +30,9 @@ export async function POST(req: NextRequest) {
         const data = await response.json();
         console.log(data.init_point);
         
-      return NextResponse.redirect(`${data.init_point}`);
+      //return Response.redirect(`${data.init_point}`);
+      return Response.json(data.init_point);
+
     } catch (error) {
       console.error('Error:', error);
       return NextResponse.error();

@@ -37,20 +37,22 @@ function payment() {
       const response = await fetch('/api/createpreference', {
           method: "POST",
           headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'POST',
+              'Access-Control-Allow-Headers': 'Content-Type, Authorization',
           },
           body: JSON.stringify(cart),
       });
-      console.log(response);
+      const data = await response.json();
+      console.log(data,'imResponseinfront');
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
   }
   useEffect(()=>{
     if(!cart) router.push('/');
-      //console.log(cart,'im the cart');
-  },[])
-  //console.log(cart)
+  },[]);
   return (
     <div>
       <div className='m-4 p-4 flex gap-x-10'>
