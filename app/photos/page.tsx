@@ -10,6 +10,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { IoMdPhotos } from 'react-icons/io';
 import { useFileContext } from '../FileContext';
 import { useRouter } from 'next/navigation';
+import { env } from 'process';
 
 function Page() {
     const [toMySelfMenu, setToMySelfMenu] = useState(false);
