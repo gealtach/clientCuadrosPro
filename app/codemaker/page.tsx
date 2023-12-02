@@ -12,7 +12,7 @@ function generateRandomCode() {
     return code;
   }
 
-function page() {
+function Page() {
 
     const [precio, setPrecio] = useState('');
     const handleChange = (e: any) => {
@@ -42,4 +42,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

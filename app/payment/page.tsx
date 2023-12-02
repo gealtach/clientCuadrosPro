@@ -6,7 +6,7 @@ import webpayLogo from '../img/1348844731.svg';
 import mercadoPagoLogo from '../img/Mercado_Pago-OGfnlreJZ_brandlogos.net.svg';
 import Image from 'next/image';
 
-function payment() {
+function Payment() {
   const { state } = useFileContext();
   const cart = state.buyCart;
   const router = useRouter();
@@ -72,4 +72,4 @@ function payment() {
   )
 }
 
-export default payment
+export default Payment

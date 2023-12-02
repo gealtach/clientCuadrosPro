@@ -20,7 +20,7 @@ interface Box {
   price: number;
 }
 
-function page() {
+function Page() {
   const [info, setInfo] = useState<Purchase[]>([]);
   const sortedInfo =  [...info].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   const router = useRouter();
@@ -85,4 +85,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

@@ -11,7 +11,7 @@ import { IoMdPhotos } from 'react-icons/io';
 import { useFileContext } from '../FileContext';
 import { useRouter } from 'next/navigation';
 
-function page() {
+function Page() {
     const [toMySelfMenu, setToMySelfMenu] = useState(false);
     const [mosaico, setMosaico] = useState(false);
     const { dispatch } = useFileContext();
@@ -126,4 +126,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

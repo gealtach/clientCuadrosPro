@@ -17,7 +17,7 @@ import photo15 from '../img/26.jpg';
 import React from 'react';
 import Image from 'next/image';
 
-function page() {
+function Page() {
   return (
     <div>
         <h1 className="text-2xl font-bold m-4">Galeria</h1>
@@ -72,4 +72,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
