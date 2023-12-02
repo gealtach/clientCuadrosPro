@@ -16,6 +16,7 @@ function page() {
     const [mosaico, setMosaico] = useState(false);
     const { dispatch } = useFileContext();
     const selfMenu = () => setToMySelfMenu(!toMySelfMenu);
+    
     const router = useRouter();
     const mosaicoMenu = () => {
         setMosaico(!mosaico);
@@ -27,22 +28,42 @@ function page() {
         if (fileInputRef.current) {
           fileInputRef.current.click();
         }
-    };
-    const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
-       //const selectedFiles = e.target.files;
-       const files = e.target.files;
-       if(files){
-           const newFormData = new FormData();
-           
-           for (let i = 0; i < files.length; i++) {
-               const file = files[i];
-               newFormData.append('files', file); // 'files' es el nombre que puedes usar en tu servidor para identificar los archivos
-            }
-            dispatch({ type: 'SET_SELECTED_FILES', payload: files });
-            dispatch({ type: 'SET_DATAFORM', payload: newFormData });
+      };
+      const handleFilesSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFiles = e.target.files;
+        const imgArray = [];
+        if (selectedFiles) {
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const formData = new FormData();
+                const file = selectedFiles[i];
+                formData.append('file', file, file.name);
+                try {
+                    const response = await fetch(
+                        `https://api.cloudinary.com/v1_1/${process.env.cloudName}/image/upload?upload_preset=${process.env.cloudPreset}`,
+                        {
+                          method: "POST",
+                          body: formData,
+                        }
+                    );
+                    if (response.ok) {
+                        const data = await response.json();
+                        imgArray.push(data.secure_url);
+                    } else {
+                        console.error("Error en la solicitud:", response.status, response.statusText);
+                    }
+                } catch (error) {
+                    console.error("Error al procesar la solicitud:", error);
+                }
+            }            
+            dispatch({ type: 'SET_SELECTED_FILES', payload: imgArray });
+            router.push('/selected')
         }
-       router.push('/selected');
-    };
+        else{
+            router.push('/');
+        }
+      };
+      
+      
 
     
 
@@ -91,8 +112,8 @@ function page() {
                             <input
                               type="file"
                               ref={fileInputRef}
+                              multiple
                               style={{ display: 'none' }}
-                              multiple // Para permitir la selección de múltiples archivos
                               onChange={handleFilesSelected}
                             />
                         </div>
