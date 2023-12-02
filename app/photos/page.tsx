@@ -22,6 +22,7 @@ function page() {
         setMosaico(!mosaico);
         selfMenu();
     };
+
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const handleFileInputChange = () => {
         if (fileInputRef.current) {

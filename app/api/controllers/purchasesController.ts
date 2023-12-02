@@ -27,6 +27,7 @@ interface SelectedItem {
   url: string;
   selectedSize: string; // Adjust the type according to your actual data type
   price: any;
+  dataForm: File;
 }
 
 export async function postPurchases({
@@ -36,9 +37,10 @@ export async function postPurchases({
   adress
 }: {
   selectedItems: {
-    url: never;
-    selectedSize: never;
-    price: any;
+    url: string;
+    selectedSize: string;
+    price: number;
+    dataForm: File;
   }[];
   totalPrice: number; // Asegúrate de usar el tipo correcto aquí
   email: string;
