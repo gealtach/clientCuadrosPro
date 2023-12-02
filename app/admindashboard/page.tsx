@@ -69,7 +69,7 @@ function Page() {
                 
                 <ul>
                   {purchase.boxes && purchase.boxes.map((box:any, index:number) =>(
-                    <li className='bg-pink-600 m-2 p-2 rounded-md border border-black'>
+                    <li className='bg-pink-600 m-2 p-2 rounded-md border border-black' key={index}>
                       <p>Id: {box.id}</p>
                       <a href={box.url} target='_blank'>Imagen:{box.url}</a>
                       <p>Dimensiones: {box.selectedSize}</p>
