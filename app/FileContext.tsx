@@ -4,6 +4,7 @@ import { createContext, useContext, useReducer, ReactNode } from 'react';
 interface FileState {
   selectedFiles: FileList | null;
   buyCart: any;
+  dataForm: FileList | null;
 }
 
 interface FileContextType {
@@ -24,6 +25,7 @@ export const useFileContext = () => {
 const initialState: FileState = {
   selectedFiles: null,
   buyCart: null,
+  dataForm: null
 };
 
 const fileReducer = (state: FileState, action: { type: string; payload: any }) => {
@@ -40,6 +42,20 @@ const fileReducer = (state: FileState, action: { type: string; payload: any }) =
         return {
           ...state,
           selectedFiles: updatedFiles,
+        };
+      }
+      case 'SET_DATAFORM':
+      return {
+        ...state,
+        dataForm: action.payload,
+      };
+      case 'REMOVE_DATAFORM':
+      if (state.dataForm && typeof action.payload === 'number') {
+        const updatedFiles = Array.from(state.dataForm);
+        updatedFiles.splice(action.payload, 1);
+        return {
+          ...state,
+          dataForm: updatedFiles,
         };
       }
       return state;
